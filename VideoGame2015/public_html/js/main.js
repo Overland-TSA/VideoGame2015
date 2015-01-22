@@ -1,13 +1,13 @@
-// create an new instance of a pixi stage
+/*/ create an new instance of a pixi stage
 var stage = new PIXI.Stage(0x66FF99);
 
 // create a renderer instance.
-var renderer = PIXI.autoDetectRenderer(400, 300);
+//var renderer = PIXI.autoDetectRenderer(400, 300);
 
 // add the renderer view element to the DOM
-document.body.appendChild(renderer.view);
+//document.body.appendChild(renderer.view);
 
-requestAnimFrame( animate );
+//requestAnimFrame( animate );
 
 // create a texture from an image path
 var texture = PIXI.Texture.fromImage("./assets/bunny.png");
@@ -33,4 +33,34 @@ function animate() {
     
     // render the stage  
     renderer.render(stage);
-}
+}*/
+
+
+/*var scenesManager = tuto.Ezelia.ScenesManager;
+ 
+        //create
+        scenesManager.create(300, 400);
+ 
+        //create a the game scene
+        var game = scenesManager.createScene('intro', Introscene);
+        var game = scenesManager.createScene('bunny', stage);
+ 
+        scenesManager.goToScene('intro');*/
+
+
+//***************************************
+
+        //get reference of ScenesManager;
+        var scenesManager = tuto.Ezelia.ScenesManager;
+
+        //note the scale parameter is set to true
+        scenesManager.create(320, 480, true);
+
+        //create a the game scene
+        var game = scenesManager.createScene('game', tuto.Ezelia.GameScene);
+        var intro = scenesManager.createScene('intro', tuto.Ezelia.IntroScene);
+        var menu = scenesManager.createScene('menu', tuto.Ezelia.MenuScene);
+
+        scenesManager.goToScene('intro');
+
+    
