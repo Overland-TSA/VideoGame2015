@@ -33,9 +33,9 @@ var tuto;
                     }
                     Ezelia.ScenesManager.goToScene('menu');
                 };
-                button.setInteractive(true);
+                button.interactive = true;
                 this.addChild(button);
-                this.setInteractive(true);
+                this.interactive = true;
             }
             GameScene.prototype.update = function () {
                 _super.prototype.update.call(this);

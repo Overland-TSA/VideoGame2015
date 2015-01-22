@@ -58,11 +58,11 @@ var tuto;
                 ScenesManager._applyRatio(ScenesManager.currentScene, 1 / ScenesManager.ratio);
             };
             ScenesManager.createScene = function createScene(id, TScene) {
-                if (typeof TScene === "undefined") { TScene = Ezelia.Scene; }
+                if (typeof TScene === "undefined") { TScene = new Ezelia.Scene(); }
                 if(ScenesManager.scenes[id]) {
                     return undefined;
                 }
-                var scene = new TScene();
+                var scene = TScene;
                 ScenesManager.scenes[id] = scene;
                 return scene;
             };

@@ -28,10 +28,10 @@ var tuto;
                 this.button.position.x = Ezelia.ScenesManager.defaultWidth / 2;
                 this.button.position.y = Ezelia.ScenesManager.defaultHeight / 2;
                 // make the button interactive..
-                this.button.setInteractive(true);
+                this.button.interactive = true;
                 this._registerEvents();
                 this.addChild(this.button);
-                this.setInteractive(true);
+                this.interactive = true;
             }
             MenuScene.prototype._registerEvents = function () {
                 var _this = this;

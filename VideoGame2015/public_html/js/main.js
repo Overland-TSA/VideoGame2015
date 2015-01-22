@@ -52,15 +52,16 @@ function animate() {
 
         //get reference of ScenesManager;
         var scenesManager = tuto.Ezelia.ScenesManager;
-
+	
         //note the scale parameter is set to true
-        scenesManager.create(320, 480, true);
-
+        scenesManager.create(900, 600, true);
+	
         //create a the game scene
-        var game = scenesManager.createScene('game', tuto.Ezelia.GameScene);
-        var intro = scenesManager.createScene('intro', tuto.Ezelia.IntroScene);
-        var menu = scenesManager.createScene('menu', tuto.Ezelia.MenuScene);
+        var game = scenesManager.createScene('game', new tuto.Ezelia.GameScene());
+        var intro = scenesManager.createScene('intro', new IntroScene());
+        var menu = scenesManager.createScene('start', new StartScene());
 
         scenesManager.goToScene('intro');
+	//scenesManager.goToScene('start');
 
     
