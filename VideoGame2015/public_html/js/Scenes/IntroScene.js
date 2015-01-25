@@ -26,7 +26,7 @@ var IntroScene = (function (_super) {
         } else {
 	    // wait a bit before switching
 	    setTimeout(
-		function(){tuto.Ezelia.ScenesManager.goToScene('start');},
+		function(){tuto.Ezelia.ScenesManager.goToScene('gamesummary');},
 		4000
 	    )
         }

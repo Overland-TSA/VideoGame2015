@@ -96,7 +96,7 @@ var StartScene = (function (_super) {
             if(_this.isPaused()) {
                 return;
             }
-            tuto.Ezelia.ScenesManager.goToScene('game');
+            tuto.Ezelia.ScenesManager.goToScene('background1');
         };
     };
     return StartScene;
