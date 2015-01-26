@@ -25,10 +25,13 @@ var IntroScene = (function (_super) {
             this.logo.alpha += 0.01;
         } else {
 	    // wait a bit before switching
-	    setTimeout(
+	    window.setTimeout(
 		function(){tuto.Ezelia.ScenesManager.goToScene('gamesummary');},
 		4000
-	    )
+	    );
+	    // necessary, otherwise it will keep ...
+	    // creating timeouts... tisk, tisk, SOO HARD to debug that!
+	    this.pause();
         }
     };
     return IntroScene;

@@ -54,11 +54,15 @@ ScenesManager = {
     goToScene: function(id) {
         
         if (this.scenes[id]) {
-            if (this.currentScene) this.currentScene.pause();
+            if (this.currentScene) {
+		this.currentScene.pause();
+	    }
+	    console.log("ScenesManager.goToScene: Switching to Scene " + id + " from " + this.currentScene);
             this.currentScene = this.scenes[id];
             this.currentScene.resume();
             return true;
         }
+	console.log("ScenesManager.goToScene: Scene " + id + " not declared");
         return false;
     },
 }

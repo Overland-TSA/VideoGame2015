@@ -63,6 +63,7 @@ var tuto;
                     return undefined;
                 }
                 var scene = TScene;
+		scene.name = id;
                 ScenesManager.scenes[id] = scene;
                 return scene;
             };
@@ -71,10 +72,12 @@ var tuto;
                     if(ScenesManager.currentScene) {
                         ScenesManager.currentScene.pause();
                     }
+                    console.log("ScenesManager.goToScene: Switching to Scene " + id + " from ", (ScenesManager.currentScene?ScenesManager.currentScene.name:undefined));
                     ScenesManager.currentScene = ScenesManager.scenes[id];
                     ScenesManager.currentScene.resume();
                     return true;
                 }
+                console.log("ScenesManager.goToScene: Scene " + id + " not declared");
                 return false;
             };
             return ScenesManager;

@@ -39,10 +39,10 @@ var StartScene = (function (_super) {
 	this.titleText = new PIXI.Text("The Great\nKhan", {font:"bold italic 50px Algerian", fill:"red", align:"center"});
 	this.titleText.height = 322;
 	this.titleText.width = 492;
-        this.button.anchor.x = 0.5;
-        this.button.anchor.y = 0.5;
-	this.titleText.position.x = 250;
-	this.titleText.position.y = 250 - this.titleText.height/2;
+        this.titleText.anchor.x = 0.5;
+        this.titleText.anchor.y = 0.5;
+	this.titleText.position.x = 250 + this.titleText.width/2;
+	this.titleText.position.y = 250;
 	this.addChild(this.titleText);
 	
         this.interactive = true;

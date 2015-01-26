@@ -25,7 +25,7 @@ var BackgroundStoryScene = (function (_super) {
 	this.addChild(this.lilMongol)
 	
         // adding the text
-	this.titleText = new PIXI.Text(this.text, {font:"bold italic 40px Arial", fill:"red", align:"center",wordWrap:true, wordWrapWidth:700 });
+	this.titleText = new PIXI.Text(this.text, {font:"bold italic 40px Arial", fill:"red", align:"center", wordWrap:true, wordWrapWidth:700 });
 	//this.titleText.width = 700;
         this.titleText.anchor.x = 0.5;
         this.titleText.anchor.y = 0.5;
@@ -38,15 +38,20 @@ var BackgroundStoryScene = (function (_super) {
     
      BackgroundStoryScene.prototype.update = function () {
         _super.prototype.update.call(this);
+        var _this = this;
         //console.log(this.titleText.position)
         if(this.titleText.position.y + this.titleText.height > 0) {
             this.titleText.position.y -= 1;
         } else {
 	    // wait a bit before switching
-	    setTimeout(
-		function(){tuto.Ezelia.ScenesManager.goToScene(this.nextScene);},
+	    window.setTimeout(
+		// can't say plain "this" because apparently "this" is evaluated to mean window in environment
+		function(){tuto.Ezelia.ScenesManager.goToScene(_this.nextScene);},
 		2000
 	    );
+	    // necessary, otherwise it will keep ...
+	    // creating timeouts... tisk, tisk, SOO HARD to debug that!
+	    this.pause();
         }
     };
     
