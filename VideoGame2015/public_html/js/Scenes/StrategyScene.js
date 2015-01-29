@@ -1,3 +1,12 @@
+var warriorTextures = [
+    "assets/lill mongol.png",
+    "assets/lill mongol.png",
+    "assets/lill mongol.png",
+    "assets/lill mongol.png"
+];
+
+
+
 var __extends = this.__extends || function (d, b) {
     function __() { this.constructor = d; }
     __.prototype = b.prototype;
@@ -113,15 +122,159 @@ var StrategyScene = (function (_super) {
 	this.battleMap.position.x = 552;
 	this.battleMap.position.y = 92;
 	
+	
+	/* BOTTOM SECTION has...
+	 * Battle Decision
+         * Battle Time
+	 * 4 Warrior sections
+	 * Total Warrior Count
+         * Battle Button
+	 * */
+	// BOTTOM SECTION - Battle Decision
+	this.battleDecision = new PIXI.Text("Battle Decision", {'font':"15px Arial", 'fill':"black", 'align':"left", 'wordWrap':true, 'wordWrapWidth':500 });
+        this.battleDecision.anchor.x = 0;
+        this.battleDecision.anchor.y = 0;
+	this.battleDecision.position.x = 20;
+	this.battleDecision.position.y = 310;
+        
+	var textureBattleDecision_NWar = PIXI.Texture.fromImage("assets/unchecked_war.png");
+	var textureBattleDecision_YWar = PIXI.Texture.fromImage("assets/checked_war.png");
+	var textureBattleDecision_NNegotiate = PIXI.Texture.fromImage("assets/unchecked_negotiate.png");
+	var textureBattleDecision_YNegotiate = PIXI.Texture.fromImage("assets/checked_negotiate.png");
+        
+        this.battleDecision_WarButton = new PIXI.Sprite(textureBattleDecision_NWar);
+	this.battleDecision_WarButton.position.x = 20;
+	this.battleDecision_WarButton.position.y = 330;
+	this.battleDecision_WarButton.scale.y = this.battleDecision_WarButton.scale.x = 0.90;
+        this.battleDecision_NegotiateButton = new PIXI.Sprite(textureBattleDecision_NNegotiate);
+	this.battleDecision_NegotiateButton.position.x = 20;
+	this.battleDecision_NegotiateButton.position.y = 370;
+	this.battleDecision_NegotiateButton.scale.y = this.battleDecision_NegotiateButton.scale.x = this.battleDecision_WarButton.scale.x;
+        
+        
+        // BOTTOM SECTION - Battle Time
+	this.battleTime = new PIXI.Text("Battle Time", {'font':"15px Arial", 'fill':"black", 'align':"left", 'wordWrap':true, 'wordWrapWidth':500 });
+        this.battleTime.anchor.x = 0;
+        this.battleTime.anchor.y = 0;
+	this.battleTime.position.x = 20;
+	this.battleTime.position.y = 420;
+        
+	var textureBattleTime_Dawn = PIXI.Texture.fromImage("assets/button_time_dawn.png");
+	var textureBattleTime_Noon = PIXI.Texture.fromImage("assets/button_time_noon.png");
+	var textureBattleTime_Night = PIXI.Texture.fromImage("assets/button_time_night.png");
+        
+        this.battleTime_DawnButton = new PIXI.Sprite(textureBattleTime_Dawn);
+	this.battleTime_DawnButton.position.x = 20;
+	this.battleTime_DawnButton.position.y = 440;
+	this.battleTime_DawnButton.scale.y = this.battleTime_DawnButton.scale.x = 0.90;
+        
+        this.battleTime_NoonButton = new PIXI.Sprite(textureBattleTime_Noon);
+	this.battleTime_NoonButton.position.x = 20;
+	this.battleTime_NoonButton.position.y = 490;
+	this.battleTime_NoonButton.scale.y = this.battleTime_NoonButton.scale.x = 0.90;
+        
+        this.battleTime_NightButton = new PIXI.Sprite(textureBattleTime_Night);
+	this.battleTime_NightButton.position.x = 20;
+	this.battleTime_NightButton.position.y = 540;
+	this.battleTime_NightButton.scale.y = this.battleTime_NightButton.scale.x = 0.90;
+        
+        
+        
+        
+	/* BOTTOM SECTION - Battle Time
+	this.battleDecision = new PIXI.Text("Battle Time", {'font':"15px Arial", 'fill':"black", 'align':"left", 'wordWrap':true, 'wordWrapWidth':500 });
+        this.battleDecision.anchor.x = 0;
+        this.battleDecision.anchor.y = 0;
+	this.battleDecision.position.x = 20;
+	this.battleDecision.position.y = 310;
+        
+	var textureBattleDecision_NWar = PIXI.Texture.fromImage("assets/unchecked_war.png");
+	var textureBattleDecision_YWar = PIXI.Texture.fromImage("assets/checked_war.png");
+	var textureBattleDecision_NNegotiate = PIXI.Texture.fromImage("assets/unchecked_negotiate.png");
+	var textureBattleDecision_YNegotiate = PIXI.Texture.fromImage("assets/checked_negotiate.png");
+        
+        this.battleDecision_WarButton = new PIXI.Sprite(textureBattleDecision_NWar);
+	this.battleDecision_WarButton.position.x = 20;
+	this.battleDecision_WarButton.position.y = 330;
+	this.battleDecision_WarButton.scale.y = this.battleDecision_WarButton.scale.x = 0.90;
+        this.battleDecision_NegotiateButton = new PIXI.Sprite(textureBattleDecision_NNegotiate);
+	this.battleDecision_NegotiateButton.position.x = 20;
+	this.battleDecision_NegotiateButton.position.y = 370;
+	this.battleDecision_NegotiateButton.scale.y = this.battleDecision_NegotiateButton.scale.x = this.battleDecision_WarButton.scale.x;
+        */
+        
+        
+        this.warriorSet = [];
+        var warriorSetsSpacing = 150;
+        for (var i=0; i<this.wariorsAvaliable.length; i++) {
+            warriorNumber = this.wariorsAvaliable[i]-1
+            var textureWarrior = PIXI.Texture.fromImage(warriorTextures[warriorNumber]);
+            warrior = new PIXI.Sprite( textureWarrior );
+            warrior.position.x = 192 + (i*warriorSetsSpacing);
+            warrior.position.y = 330;
+            warrior.scale.y = warrior.scale.x = 0.7;
+            
+            uparrow = new PIXI.Sprite( PIXI.Texture.fromImage("assets/up_arrow.png") );
+            uparrow.position.x = 210 + (i*warriorSetsSpacing);
+            uparrow.position.y = 480;
+            uparrow.scale.y = uparrow.scale.x = 0.7;
+            
+            downarrow = new PIXI.Sprite( PIXI.Texture.fromImage("assets/down_arrow.png") );
+            downarrow.position.x = 210 + (i*warriorSetsSpacing);
+            downarrow.position.y = 550;
+            downarrow.scale.y = downarrow.scale.x = uparrow.scale.x;
+            
+            warriorcount = new PIXI.Text("0", {'font':"15px Arial", 'fill':"black", 'align':"left", 'wordWrap':true, 'wordWrapWidth':500 });
+            warriorcount.position.x = 220 + (i*warriorSetsSpacing);
+            warriorcount.position.y = 520;
+            
+            
+            this.warriorSet.push( warrior );
+            this.warriorSet.push( uparrow );
+            this.warriorSet.push( warriorcount );
+            this.warriorSet.push( downarrow );
+        }
+        
+	// BOTTOM SECTION - Total Warrior Count
+        this.totalWarriorCount = new PIXI.Text("Total Warriors:", {'font':"15px Arial", 'fill':"black", 'align':"left", 'wordWrap':true, 'wordWrapWidth':500 });
+	this.totalWarriorCount.position.x = 730;
+	this.totalWarriorCount.position.y = 330;
+	this.totalWarriorCount.scale.y = this.totalWarriorCount.scale.x = 0.90;
+        
+	// BOTTOM SECTION - Battle Button
+        this.battleButton = new PIXI.Sprite(  PIXI.Texture.fromImage("assets/battle_button.png")  );
+	this.battleButton.position.x = 730;
+	this.battleButton.position.y = 535;
+	this.battleButton.scale.y = this.battleButton.scale.x = 0.90;
+        
+        
+        
+        
 	// add the children, all at once
 	// important becaouse graphics_back really should be first
 	this.addChild(graphics_back);
 	this.addChild(this.currentKhan);
-	this.addChild(this.lilMongol)
+	this.addChild(this.lilMongol);
 	this.addChild(this.currentTime);
 	this.addChild(this.currentBattle);
 	this.addChild(this.battleDescription);
-	this.addChild(this.battleMap)
+	this.addChild(this.battleMap);
+        
+        this.addChild(this.battleDecision);
+        this.addChild(this.battleDecision_WarButton);
+        this.addChild(this.battleDecision_NegotiateButton);
+        
+        this.addChild(this.battleTime);
+        this.addChild(this.battleTime_DawnButton);
+        this.addChild(this.battleTime_NoonButton);
+        this.addChild(this.battleTime_NightButton);
+        
+        for (i=0; i<this.warriorSet.length; i++) {
+            this.addChild(this.warriorSet[i]);
+        }
+        
+        this.addChild(this.totalWarriorCount);
+        this.addChild(this.battleButton);
 	this.addChild(graphics_front);
 	
 	
