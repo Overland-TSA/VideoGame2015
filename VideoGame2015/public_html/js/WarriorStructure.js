@@ -1,6 +1,10 @@
 function WarriorStructure() {
     this.maximum = 100;
     this.countWarriorType = [0, 0, 0, 0];
+    
+    // other logistics of the battle
+    this.war = undefined;
+    this.arrival = undefined;
 }
 
 WarriorStructure.prototype.total = function() {

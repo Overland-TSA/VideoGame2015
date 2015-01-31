@@ -30,7 +30,13 @@ var StrategyScene = (function (_super) {
         // when you interact with something, does it
         this._registerEvents();
 	
-	// create some new graphics objects
+	// before we go any further,
+	// declare this WarriorStructure
+	// which will hold the user-defined
+	// aspects of the battle
+	this.warriorStructure = new WarriorStructure();
+        
+        // create some new graphics objects
 	var graphics_back = new PIXI.Graphics();
 	var graphics_front = new PIXI.Graphics();
 	
@@ -180,33 +186,14 @@ var StrategyScene = (function (_super) {
         
         
         
+        // BOTTOM SECTION - Total Warrior Count
+        this.totalWarriorCount = new PIXI.Text("Total Warriors:  0", {'font':"15px Arial", 'fill':"black", 'align':"left", 'wordWrap':true, 'wordWrapWidth':500 });
+	this.totalWarriorCount.position.x = 730;
+	this.totalWarriorCount.position.y = 330;
+	this.totalWarriorCount.scale.y = this.totalWarriorCount.scale.x = 0.90;
         
-	/* BOTTOM SECTION - Battle Time
-	this.battleDecision = new PIXI.Text("Battle Time", {'font':"15px Arial", 'fill':"black", 'align':"left", 'wordWrap':true, 'wordWrapWidth':500 });
-        this.battleDecision.anchor.x = 0;
-        this.battleDecision.anchor.y = 0;
-	this.battleDecision.position.x = 20;
-	this.battleDecision.position.y = 310;
-        
-	var textureBattleDecision_NWar = PIXI.Texture.fromImage("assets/unchecked_war.png");
-	var textureBattleDecision_YWar = PIXI.Texture.fromImage("assets/checked_war.png");
-	var textureBattleDecision_NNegotiate = PIXI.Texture.fromImage("assets/unchecked_negotiate.png");
-	var textureBattleDecision_YNegotiate = PIXI.Texture.fromImage("assets/checked_negotiate.png");
-        
-        this.battleDecision_WarButton = new PIXI.Sprite(textureBattleDecision_NWar);
-	this.battleDecision_WarButton.position.x = 20;
-	this.battleDecision_WarButton.position.y = 330;
-	this.battleDecision_WarButton.scale.y = this.battleDecision_WarButton.scale.x = 0.90;
-        this.battleDecision_NegotiateButton = new PIXI.Sprite(textureBattleDecision_NNegotiate);
-	this.battleDecision_NegotiateButton.position.x = 20;
-	this.battleDecision_NegotiateButton.position.y = 370;
-	this.battleDecision_NegotiateButton.scale.y = this.battleDecision_NegotiateButton.scale.x = this.battleDecision_WarButton.scale.x;
-        */
-        
-        
-	this.warriorStructure = new WarriorStructure();
-        
-        this.warriorSet = [[], [], [], []];
+	
+	this.warriorSet = [[], [], [], []];
 	var warriorSetsSpacing = 150;
         for (var i=0; i<this.wariorsAvaliable.length; i++) {
             warriorNumber = this.wariorsAvaliable[i]-1;
@@ -259,12 +246,6 @@ var StrategyScene = (function (_super) {
 	        };
 	    })(warriorNumber);
         }
-        
-	// BOTTOM SECTION - Total Warrior Count
-        this.totalWarriorCount = new PIXI.Text("Total Warriors:", {'font':"15px Arial", 'fill':"black", 'align':"left", 'wordWrap':true, 'wordWrapWidth':500 });
-	this.totalWarriorCount.position.x = 730;
-	this.totalWarriorCount.position.y = 330;
-	this.totalWarriorCount.scale.y = this.totalWarriorCount.scale.x = 0.90;
         
 	// BOTTOM SECTION - Battle Button
         this.battleButton = new PIXI.Sprite(  PIXI.Texture.fromImage("assets/battle_button.png")  );
