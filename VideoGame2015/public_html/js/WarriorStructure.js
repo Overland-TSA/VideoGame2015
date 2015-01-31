@@ -8,19 +8,19 @@ WarriorStructure.prototype.total = function() {
 };
 
 WarriorStructure.prototype.increase = function(warriorType) {
-    if (this.total() < this.maximum  &&  this.countWarriorType[warriorType-1]<this.maximum) {
-	this.countWarriorType[warriorType-1]++;
+    if (this.total() < this.maximum  &&  this.countWarriorType[warriorType]<this.maximum) {
+	this.countWarriorType[warriorType]++;
     }
 };
 
 WarriorStructure.prototype.decrease = function(warriorType) {
-    if (this.total() > 0  &&  this.countWarriorType[warriorType-1]>0) {
-        this.countWarriorType[warriorType-1]--;
+    if (this.total() > 0  &&  this.countWarriorType[warriorType]>0) {
+        this.countWarriorType[warriorType]--;
     }
 };
 
 WarriorStructure.prototype.get = function(warriorType) {
-	return this.countWarriorType[warriorType-1];
+	return this.countWarriorType[warriorType];
 };
 
 WarriorStructure.prototype.getAll = function() {

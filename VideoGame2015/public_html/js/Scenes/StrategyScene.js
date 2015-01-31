@@ -204,8 +204,10 @@ var StrategyScene = (function (_super) {
         */
         
         
-        this.warriorSet = [];
-        var warriorSetsSpacing = 150;
+	this.warriorStructure = new WarriorStructure();
+        
+        this.warriorSet = [[], [], [], []];
+	var warriorSetsSpacing = 150;
         for (var i=0; i<this.wariorsAvaliable.length; i++) {
             warriorNumber = this.wariorsAvaliable[i]-1;
             var textureWarrior = PIXI.Texture.fromImage(warriorTextures[warriorNumber]);
@@ -227,12 +229,35 @@ var StrategyScene = (function (_super) {
             warriorcount = new PIXI.Text("0", {'font':"15px Arial", 'fill':"black", 'align':"left", 'wordWrap':true, 'wordWrapWidth':500 });
             warriorcount.position.x = 220 + (i*warriorSetsSpacing);
             warriorcount.position.y = 520;
+	    
+	    
+            this.warriorSet[warriorNumber].push( warrior );
+            this.warriorSet[warriorNumber].push( uparrow );
+            this.warriorSet[warriorNumber].push( warriorcount );
+            this.warriorSet[warriorNumber].push( downarrow );
             
             
-            this.warriorSet.push( warrior );
-            this.warriorSet.push( uparrow );
-            this.warriorSet.push( warriorcount );
-            this.warriorSet.push( downarrow );
+	    // events
+	    uparrow.interactive = true
+	    downarrow.interactive = true
+	    
+	    _this = this;
+	    
+	    uparrow.click = uparrow.tap = (function(id) {
+		return function (data) {
+		    _this.warriorStructure.increase(id);
+		    _this.warriorSet[id][2].setText(_this.warriorStructure.get(id));	//  warriorcount
+		    _this.totalWarriorCount.setText("Total Warriors:  " + _this.warriorStructure.total());
+	        };
+	    })(warriorNumber);
+	    
+	    downarrow.click = downarrow.tap = (function(id) {
+		return function (data) {
+		    _this.warriorStructure.decrease(id);
+		    _this.warriorSet[id][2].setText(_this.warriorStructure.get(id));	//  warriorcount
+		    _this.totalWarriorCount.setText("Total Warriors:  " + _this.warriorStructure.total());
+	        };
+	    })(warriorNumber);
         }
         
 	// BOTTOM SECTION - Total Warrior Count
@@ -270,7 +295,9 @@ var StrategyScene = (function (_super) {
         this.addChild(this.battleTime_NightButton);
         
         for (i=0; i<this.warriorSet.length; i++) {
-            this.addChild(this.warriorSet[i]);
+            for (j=0; j<this.warriorSet[i].length; j++) {
+		this.addChild(this.warriorSet[i][j]);
+            }
         }
         
         this.addChild(this.totalWarriorCount);
@@ -288,12 +315,12 @@ var StrategyScene = (function (_super) {
     StrategyScene.prototype._registerEvents = function () {
         var _this = this;
         //click scene = switch scene
-        this.click = this.tap = function (data) {
-            if(_this.isPaused()) {
-                return;
-            }
-            tuto.Ezelia.ScenesManager.goToScene(_this.nextScene);
-        };
+        //this.click = this.tap = function (data) {
+        //    if(_this.isPaused()) {
+        //        return;
+        //    }
+            //tuto.Ezelia.ScenesManager.goToScene(_this.nextScene);
+        //};
     };
     return StrategyScene;
 })(tuto.Ezelia.Scene);
