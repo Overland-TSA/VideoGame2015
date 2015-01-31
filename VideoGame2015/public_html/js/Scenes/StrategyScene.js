@@ -157,6 +157,29 @@ var StrategyScene = (function (_super) {
 	this.battleDecision_NegotiateButton.position.y = 370;
 	this.battleDecision_NegotiateButton.scale.y = this.battleDecision_NegotiateButton.scale.x = this.battleDecision_WarButton.scale.x;
         
+	
+	// Battle Decision events
+        this.battleDecision_WarButton.interactive = true
+        this.battleDecision_NegotiateButton.interactive = true
+	
+        _this = this;
+	
+        this.battleDecision_WarButton.click = this.battleDecision_WarButton.tap = function (data) {
+	    if (_this.warriorStructure.war != true) {
+		_this.battleDecision_WarButton.setTexture(textureBattleDecision_YWar);
+		_this.battleDecision_NegotiateButton.setTexture(textureBattleDecision_NNegotiate);
+		_this.warriorStructure.war = true;
+	    }
+	};
+	
+        this.battleDecision_NegotiateButton.click = this.battleDecision_NegotiateButton.tap = function (data) {
+	    if (_this.warriorStructure.war != false) {
+		_this.battleDecision_NegotiateButton.setTexture(textureBattleDecision_YNegotiate);
+		_this.battleDecision_WarButton.setTexture(textureBattleDecision_NWar);
+		_this.warriorStructure.war = false;
+	    }
+	};
+	
         
         // BOTTOM SECTION - Battle Time
 	this.battleTime = new PIXI.Text("Battle Time", {'font':"15px Arial", 'fill':"black", 'align':"left", 'wordWrap':true, 'wordWrapWidth':500 });
@@ -165,24 +188,62 @@ var StrategyScene = (function (_super) {
 	this.battleTime.position.x = 20;
 	this.battleTime.position.y = 420;
         
-	var textureBattleTime_Dawn = PIXI.Texture.fromImage("assets/button_time_dawn.png");
-	var textureBattleTime_Noon = PIXI.Texture.fromImage("assets/button_time_noon.png");
-	var textureBattleTime_Night = PIXI.Texture.fromImage("assets/button_time_night.png");
+	var textureBattleTime_NDawn = PIXI.Texture.fromImage("assets/unchecked_button_time_dawn.png");
+	var textureBattleTime_YDawn = PIXI.Texture.fromImage("assets/checked_button_time_dawn.png");
+	var textureBattleTime_NNoon = PIXI.Texture.fromImage("assets/unchecked_button_time_noon.png");
+	var textureBattleTime_YNoon = PIXI.Texture.fromImage("assets/checked_button_time_noon.png");
+	var textureBattleTime_NNight = PIXI.Texture.fromImage("assets/unchecked_button_time_night.png");
+        var textureBattleTime_YNight = PIXI.Texture.fromImage("assets/checked_button_time_night.png");
         
-        this.battleTime_DawnButton = new PIXI.Sprite(textureBattleTime_Dawn);
+        this.battleTime_DawnButton = new PIXI.Sprite(textureBattleTime_NDawn);
 	this.battleTime_DawnButton.position.x = 20;
 	this.battleTime_DawnButton.position.y = 440;
 	this.battleTime_DawnButton.scale.y = this.battleTime_DawnButton.scale.x = 0.90;
         
-        this.battleTime_NoonButton = new PIXI.Sprite(textureBattleTime_Noon);
+        this.battleTime_NoonButton = new PIXI.Sprite(textureBattleTime_NNoon);
 	this.battleTime_NoonButton.position.x = 20;
 	this.battleTime_NoonButton.position.y = 490;
 	this.battleTime_NoonButton.scale.y = this.battleTime_NoonButton.scale.x = 0.90;
         
-        this.battleTime_NightButton = new PIXI.Sprite(textureBattleTime_Night);
+        this.battleTime_NightButton = new PIXI.Sprite(textureBattleTime_NNight);
 	this.battleTime_NightButton.position.x = 20;
 	this.battleTime_NightButton.position.y = 540;
 	this.battleTime_NightButton.scale.y = this.battleTime_NightButton.scale.x = 0.90;
+        
+	
+	// Battle Time events
+        this.battleTime_DawnButton.interactive = true
+        this.battleTime_NoonButton.interactive = true
+        this.battleTime_NightButton.interactive = true
+	
+        _this = this;
+	
+        this.battleTime_DawnButton.click = this.battleTime_DawnButton.tap = function (data) {
+	    if (_this.warriorStructure.arrival != "dawn") {
+		_this.battleTime_DawnButton.setTexture(textureBattleTime_YDawn);
+		_this.battleTime_NoonButton.setTexture(textureBattleTime_NNoon);
+		_this.battleTime_NightButton.setTexture(textureBattleTime_NNight);
+		_this.warriorStructure.arrival = "dawn";
+	    }
+	};
+	
+        this.battleTime_NoonButton.click = this.battleTime_NoonButton.tap = function (data) {
+	    if (_this.warriorStructure.arrival != "noon") {
+		_this.battleTime_NoonButton.setTexture(textureBattleTime_YNoon);
+		_this.battleTime_DawnButton.setTexture(textureBattleTime_NDawn);
+		_this.battleTime_NightButton.setTexture(textureBattleTime_NNight);
+		_this.warriorStructure.arrival = "noon";
+	    }
+	};
+	
+        this.battleTime_NightButton.click = this.battleTime_NightButton.tap = function (data) {
+	    if (_this.warriorStructure.arrival != "night") {
+		_this.battleTime_NightButton.setTexture(textureBattleTime_YNight);
+		_this.battleTime_DawnButton.setTexture(textureBattleTime_NDawn);
+		_this.battleTime_NoonButton.setTexture(textureBattleTime_NNoon);
+		_this.warriorStructure.arrival = "night";
+	    }
+	};
         
         
         
