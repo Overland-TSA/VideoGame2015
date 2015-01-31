@@ -207,7 +207,7 @@ var StrategyScene = (function (_super) {
         this.warriorSet = [];
         var warriorSetsSpacing = 150;
         for (var i=0; i<this.wariorsAvaliable.length; i++) {
-            warriorNumber = this.wariorsAvaliable[i]-1
+            warriorNumber = this.wariorsAvaliable[i]-1;
             var textureWarrior = PIXI.Texture.fromImage(warriorTextures[warriorNumber]);
             warrior = new PIXI.Sprite( textureWarrior );
             warrior.position.x = 192 + (i*warriorSetsSpacing);
@@ -292,7 +292,7 @@ var StrategyScene = (function (_super) {
             if(_this.isPaused()) {
                 return;
             }
-            tuto.Ezelia.ScenesManager.goToScene(this.nextScene);
+            tuto.Ezelia.ScenesManager.goToScene(_this.nextScene);
         };
     };
     return StrategyScene;
